@@ -13,24 +13,33 @@
 	</h:head>
 
 	<h:body>
-		<header >
+		<p:ajaxStatus styleClass="ajax-status">
+			<f:facet name="start">
+				<h:graphicImage library="images" name="loading.gif"/>
+			</f:facet>
+			<f:facet name="complete">
+				<h:outputText value=""/>
+			</f:facet>
+		</p:ajaxStatus>
+	
+		<header>
 			<div>
 				<h:link>
 					<h:graphicImage library="images" name="logo-mercado.png" />
 				</h:link>
 			</div>
 		</header>
+		<div id="conteudo">
+			<ui:insert name="corpo"/>
+		</div>
+	
+		<p:separator style="margin-top: 20px"/>
+		
+		<footer>
+			Pedro Soluções - 
+			<a href="https://github.com/pedrorhamon" target="_blank">www.starking.com</a>
+		</footer>
 	</h:body>
 	
-	<div id="conteudo">
-		<ui:insert name="corpo"/>
-	</div>
-	
-	<p:separator style="margin-top: 20px"/>
-	
-	<footer>
-		Pedro Soluções - 
-		<a href="https://github.com/pedrorhamon" target="_blank">www.starking.com</a>
-	</footer>
 
 </html>
