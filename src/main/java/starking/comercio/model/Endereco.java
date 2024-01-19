@@ -27,5 +27,6 @@ public class Endereco implements Serializable{
 	private String cidade;
 	private String uf;
 	private String cpf;
+	private Cliente cliente;
 
 }
