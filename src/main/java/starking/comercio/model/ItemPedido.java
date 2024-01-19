@@ -1,8 +1,7 @@
 package starking.comercio.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,15 +16,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Usuario implements Serializable {
+public class ItemPedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@EqualsAndHashCode.Include
 	private Long id;
-	private String nome;
-	private String email;
-	private String senha;
-	private Boolean ativo = true;
-	private List<Grupo> grupos = new ArrayList<>();
+	private Integer quantidade;
+	private BigDecimal valorUnitario;
+	private Produto produto;
+	private Pedido pedido;
+
 }

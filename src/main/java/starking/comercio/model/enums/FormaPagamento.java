@@ -1,4 +1,4 @@
-package starking.comercio.model;
+package starking.comercio.model.enums;
 
 /**
  * @author pedroRhamon
