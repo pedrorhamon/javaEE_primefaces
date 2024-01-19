@@ -44,6 +44,9 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 				if (exception instanceof ViewExpiredException) {
 					handled = true;
 					redirect("/");
+				} else {
+					handled = true;
+					redirect("/Erro.xhtml");
 				}
 			} finally {
 				if (handled) {
