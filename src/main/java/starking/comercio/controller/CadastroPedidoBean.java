@@ -28,7 +28,7 @@ public class CadastroPedidoBean {
 	}
 	
 	public void salvar() {
-		throw new NegocioException("");
+		throw new NegocioException("Pedido não pode ser salvo, pois ainda não foi implementado.");
 	}
 
 }
