@@ -6,6 +6,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import starking.comercio.service.NegocioException;
+
 /**
  * @author pedroRhamon
  */
@@ -23,6 +25,10 @@ public class CadastroPedidoBean {
 
 	public List<Integer> getItens() {
 		return itens;
+	}
+	
+	public void salvar() {
+		throw new NegocioException("");
 	}
 
 }
