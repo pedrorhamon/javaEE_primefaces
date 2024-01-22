@@ -1,34 +1,45 @@
 package starking.comercio.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 
-import starking.comercio.service.NegocioException;
+import starking.comercio.model.EnderecoEntrega;
+import starking.comercio.model.Pedido;
 
 /**
  * @author pedroRhamon
  */
 
-@ManagedBean
-@RequestScoped
-public class CadastroPedidoBean {
+@Named
+@ViewScoped
+public class CadastroPedidoBean implements Serializable {
 
-	private List<Integer> itens = new ArrayList<>();
+	private static final long serialVersionUID = 1L;
 
+	private Pedido pedido;
+	
+	private List<Integer> itens;
+	
 	public CadastroPedidoBean() {
+		pedido = new Pedido();
+		pedido.setEnderecoEntrega(new EnderecoEntrega());
 		itens = new ArrayList<>();
 		itens.add(1);
+	}
+	
+	public void salvar() {
 	}
 
 	public List<Integer> getItens() {
 		return itens;
 	}
-	
-	public void salvar() {
-		throw new NegocioException("Pedido não pode ser salvo, pois ainda não foi implementado.");
+
+	public Pedido getPedido() {
+		return pedido;
 	}
 
 }
