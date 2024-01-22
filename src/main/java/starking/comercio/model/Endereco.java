@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +35,8 @@ public class Endereco implements Serializable{
 	private String cidade;
 	private String uf;
 	private String cpf;
+	
+	@ManyToOne
 	private Cliente cliente;
 
 }
