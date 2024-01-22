@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +30,7 @@ import starking.comercio.model.enums.TipoPessoa;
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(name = "cliente")
 public class Cliente implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -33,12 +39,21 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
+	
+	@Column(nullable = false, length = 100)
 	private String nome;
+	
+	@Column(nullable = false, length = 255)
 	private String email;
+	
+	@Column(name = "doc_Receita_Federal", nullable = false, length = 14)
 	private String docmentoReceitaFederal;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 10)
 	private TipoPessoa tipoPessoa;
 	
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente", cascade =CascadeType.ALL)
 	private List<Endereco> endereco = new ArrayList<>();
 
 }
