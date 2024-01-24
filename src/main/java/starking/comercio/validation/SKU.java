@@ -21,7 +21,7 @@ import javax.validation.constraints.Pattern;
 public @interface SKU {
 	
 	@OverridesAttribute(constraint = Pattern.class, name = "message")
-	String message() default "{comercio.constraints.SKU.message}";
+	String message() default "{starking.constraints.SKU.message}";
 	
 	Class<?>[] groups() default {};
 	
