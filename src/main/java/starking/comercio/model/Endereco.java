@@ -50,7 +50,7 @@ public class Endereco implements Serializable{
 	private String uf;
 	
 	@Column(nullable = false, length = 9)
-	private String cpf;
+	private String cep;
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id", nullable = false)

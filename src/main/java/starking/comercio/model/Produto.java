@@ -22,6 +22,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import starking.comercio.validation.SKU;
 
 /**
  * @author pedroRhamon
@@ -46,15 +47,15 @@ public class Produto implements Serializable {
 	@Column(nullable = false, length = 80)
 	private String nome;
 	
-	@NotBlank
+	@NotBlank @SKU
 	@Column(nullable = false, length = 20, unique = true)
 	private String sku;
 	
-	@NotNull
+	@NotNull(message = "é obrigatório")
 	@Column(name="valor_unitario", nullable = false, precision = 10, scale = 2)
 	private BigDecimal valorUnitario;
 	
-	@NotNull @Min(0) @Max(9999)
+	@NotNull @Min(0) @Max(value = 9999, message = "tem um valor muito alto")
 	@Column(name="quantidade_estoque", nullable = false, length = 5)
 	private Integer quantidadeEstoque;
 	
