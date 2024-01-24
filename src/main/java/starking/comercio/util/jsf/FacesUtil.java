@@ -1,4 +1,4 @@
-package starking.comercio.util.jsf;
+	package starking.comercio.util.jsf;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

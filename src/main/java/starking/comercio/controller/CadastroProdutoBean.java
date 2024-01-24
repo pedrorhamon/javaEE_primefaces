@@ -29,5 +29,4 @@ public class CadastroProdutoBean implements Serializable {
 	public Produto getProduto() {
 		return produto;
 	}
-
 }
