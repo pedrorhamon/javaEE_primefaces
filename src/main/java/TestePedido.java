@@ -1,5 +1,3 @@
-package starking.comercio.controller;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -17,13 +15,10 @@ import starking.comercio.model.Usuario;
 import starking.comercio.model.enums.FormaPagamento;
 import starking.comercio.model.enums.StatusPedido;
 
-/**
- * @author pedroRhamon
- */
 public class TestePedido {
 
 	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("ComercioPU");
 		EntityManager manager = factory.createEntityManager();
 		
 		EntityTransaction trx = manager.getTransaction();
@@ -65,4 +60,5 @@ public class TestePedido {
 		
 		trx.commit();
 	}
+	
 }

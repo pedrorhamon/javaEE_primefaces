@@ -1,5 +1,3 @@
-package starking.comercio.controller;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -8,13 +6,10 @@ import javax.persistence.Persistence;
 import starking.comercio.model.Grupo;
 import starking.comercio.model.Usuario;
 
-/**
- * @author pedroRhamon
- */
 public class TesteUsuario {
 
 	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("PedidoPU");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("ComercioPU");
 		EntityManager manager = factory.createEntityManager();
 		
 		EntityTransaction trx = manager.getTransaction();
@@ -35,4 +30,5 @@ public class TesteUsuario {
 		
 		trx.commit();
 	}
+	
 }

@@ -28,7 +28,7 @@
 			<version>4.2.3.Final</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

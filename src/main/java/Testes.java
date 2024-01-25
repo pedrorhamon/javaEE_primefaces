@@ -1,5 +1,3 @@
-package starking.comercio.controller;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -12,17 +10,17 @@ import starking.comercio.model.enums.TipoPessoa;
 /**
  * @author pedroRhamon
  */
-public class TesteCliente {
-
+public class Testes {
+	
 	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("PedidoPU");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("ComercioPU");
 		EntityManager manager = factory.createEntityManager();
 		
 		EntityTransaction trx = manager.getTransaction();
 		trx.begin();
 		
 		Cliente cliente = new Cliente();
-		cliente.setNome("João das Couves");
+		cliente.setNome("João das Couves2");
 		cliente.setEmail("joao@dascouves.com");
 		cliente.setDocmentoReceitaFederal("123.123.123-12");
 		cliente.setTipoPessoa(TipoPessoa.FISICA);
@@ -41,4 +39,5 @@ public class TesteCliente {
 		
 		trx.commit();
 	}
+
 }

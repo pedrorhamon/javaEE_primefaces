@@ -1,5 +1,3 @@
-package starking.comercio.controller;
-
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
@@ -10,13 +8,10 @@ import javax.persistence.Persistence;
 import starking.comercio.model.Categoria;
 import starking.comercio.model.Produto;
 
-/**
- * @author pedroRhamon
- */
 public class TesteProduto {
 
 	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("PedidoPU");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("ComercioPU");
 		EntityManager manager = factory.createEntityManager();
 		
 		EntityTransaction trx = manager.getTransaction();
@@ -43,11 +38,12 @@ public class TesteProduto {
 		produto.setCategoria(categoriaFilha);
 		produto.setNome("Guaraná 2L");
 		produto.setQuantidadeEstoque(10);
-		produto.setSku("GUA00123");
+		produto.setSku("GA0013");
 		produto.setValorUnitario(new BigDecimal(2.21));
 		
 		manager.persist(produto);
 		
 		trx.commit();
 	}
+	
 }
