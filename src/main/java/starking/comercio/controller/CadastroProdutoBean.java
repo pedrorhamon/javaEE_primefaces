@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 
 import starking.comercio.model.Categoria;
 import starking.comercio.model.Produto;
+import starking.comercio.repository.CategoriasRepository;
 
 /**
  * @author pedroRhamon
@@ -23,7 +24,7 @@ public class CadastroProdutoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private EntityManager manager;
+	private CategoriasRepository repository;
 	
 	private Produto produto;
 	
@@ -36,7 +37,7 @@ public class CadastroProdutoBean implements Serializable {
 	public void inicializar(ComponentSystemEvent event) {
 		System.out.println("Inicializando...");
 		
-		categoriasRaizes = manager.createQuery("from Categoria", Categoria.class).getResultList();
+		categoriasRaizes = this.repository.buscarCategoria();
 	}
 	
 	public void salvar() {
