@@ -29,14 +29,14 @@ public class CadastroProdutoBean implements Serializable {
 	
 	private List<Categoria> categoriasRaizes;
 	
-	public void inicializar(ComponentSystemEvent event) {
-		System.out.println("Inicializando...");
-		categoriasRaizes = manager.createQuery("from Categoria", Categoria.class).getResultList();
-//		manager.close();
-	}
-	
 	public CadastroProdutoBean() {
 		produto = new Produto();
+	}
+	
+	public void inicializar(ComponentSystemEvent event) {
+		System.out.println("Inicializando...");
+		
+		categoriasRaizes = manager.createQuery("from Categoria", Categoria.class).getResultList();
 	}
 	
 	public void salvar() {
@@ -45,8 +45,9 @@ public class CadastroProdutoBean implements Serializable {
 	public Produto getProduto() {
 		return produto;
 	}
-	
+
 	public List<Categoria> getCategoriasRaizes() {
 		return categoriasRaizes;
 	}
+	
 }

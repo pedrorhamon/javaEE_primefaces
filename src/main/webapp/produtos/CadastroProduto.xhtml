@@ -11,7 +11,7 @@
 
 		<f:metadata>
 <!-- 			<c:set property=#{cadastroProdutoBean.inicializar} value="theValue" /> -->
-            <f:event listener="#{cadastroProdutoBean.inicializar}" type="PreRenderView"></f:event>
+<!--             <f:event listener="#{cadastroProdutoBean.inicializar}" type="PreRenderView" /> -->
         </f:metadata>
 
 		<h:form>
@@ -40,12 +40,12 @@
 				<p:inputText id="nome" size="60" maxlength="80"
 					value="#{cadastroProdutoBean.produto.nome}" />
 
-				<p:outputLabel value="Categoria" for="categoria" />
-				<p:selectOneMenu id="categoria">
-					<f:selectItem itemLabel="Selecione a categoria" />
-					<f:selectItems value="#{cadastroProdutoBean.categoriasRaizes}"
-						itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
-				</p:selectOneMenu>
+				<p:outputLabel value="Categoria" for="categoria"/>
+	    		<p:selectOneMenu id="categoria">
+	    			<f:selectItem itemLabel="Selecione a categoria"/>
+	    			<f:selectItems value="#{cadastroProdutoBean.categoriasRaizes}" var="categoria"
+	    				itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
+	    		</p:selectOneMenu>
 
 				<p:outputLabel value="Subcategoria" for="subCategoria" />
 				<p:selectOneMenu id="subCategoria"
@@ -53,12 +53,11 @@
 					<f:selectItem itemLabel="Selecione a subcategoria" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="Valor unitário" for="valorUnitario" />
-				<p:inputText id="valorUnitario" size="10" maxlength="10"
-					styleClass="moeda"
-					value="#{cadastroProdutoBean.produto.valorUnitario}">
-					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-				</p:inputText>
+				<p:outputLabel value="Valor unitário" for="valorUnitario"/>
+	    		<p:inputText id="valorUnitario" size="10" maxlength="10" styleClass="moeda"
+	    			value="#{cadastroProdutoBean.produto.valorUnitario}">
+	    			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+	    		</p:inputText>
 
 				<p:outputLabel value="Estoque" for="estoque" />
 				<p:inputText id="estoque" size="10" maxlength="5"
