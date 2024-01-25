@@ -32,7 +32,7 @@ public class CadastroProdutoBean implements Serializable {
 	public void inicializar(ComponentSystemEvent event) {
 		System.out.println("Inicializando...");
 		categoriasRaizes = manager.createQuery("from Categoria", Categoria.class).getResultList();
-		manager.close();
+//		manager.close();
 	}
 	
 	public CadastroProdutoBean() {

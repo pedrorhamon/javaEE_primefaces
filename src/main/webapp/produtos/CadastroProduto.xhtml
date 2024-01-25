@@ -8,9 +8,11 @@
 	<ui:define name="titulo">Novo produto</ui:define>
 
 	<ui:define name="corpo">
+
 		<f:metadata>
-			<f:event listener="#{cadastroProdutoBean.inicializar}" type="preRenderView" />
-		</f:metadata>
+<!-- 			<c:set property=#{cadastroProdutoBean.inicializar} value="theValue" /> -->
+            <f:event listener="#{cadastroProdutoBean.inicializar}" type="PreRenderView"></f:event>
+        </f:metadata>
 
 		<h:form>
 			<h1>Novo produto</h1>
