@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
 
 import starking.comercio.model.Categoria;
 import starking.comercio.model.Produto;
@@ -28,6 +29,8 @@ public class CadastroProdutoBean implements Serializable {
 	
 	private List<Categoria> categoriasRaizes;
 	
+	private Categoria categoriaPai;
+	
 	public CadastroProdutoBean() {
 		produto = new Produto();
 	}
@@ -39,6 +42,7 @@ public class CadastroProdutoBean implements Serializable {
 	}
 	
 	public void salvar() {
+		System.out.println("Categoria Selecionada: "+ categoriaPai.getDescricao());
 	}
 
 	public Produto getProduto() {
@@ -48,5 +52,13 @@ public class CadastroProdutoBean implements Serializable {
 	public List<Categoria> getCategoriasRaizes() {
 		return categoriasRaizes;
 	}
-	
+
+	@NotNull
+	public Categoria getCategoriaPai() {
+		return categoriaPai;
+	}
+
+	public void setCategoriaPai(Categoria categoriaPai) {
+		this.categoriaPai = categoriaPai;
+	}
 }
