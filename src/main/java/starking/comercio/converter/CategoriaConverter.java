@@ -7,6 +7,7 @@ import javax.faces.convert.FacesConverter;
 
 import starking.comercio.model.Categoria;
 import starking.comercio.repository.CategoriasRepository;
+import starking.comercio.util.cdi.CDIServiceLocator;
 
 /**
  * @author pedroRhamon
@@ -15,6 +16,10 @@ import starking.comercio.repository.CategoriasRepository;
 public class CategoriaConverter implements Converter {
 
 	private CategoriasRepository repository;
+	
+	public CategoriaConverter() {
+		repository = CDIServiceLocator.getBean(CategoriasRepository.class);
+	}
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
