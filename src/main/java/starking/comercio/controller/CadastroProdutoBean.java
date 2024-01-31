@@ -1,6 +1,7 @@
 package starking.comercio.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import starking.comercio.model.Categoria;
 import starking.comercio.model.Produto;
 import starking.comercio.repository.CategoriasRepository;
+import starking.comercio.service.CadastroProdutoService;
 import starking.comercio.util.jsf.FacesUtil;
 
 /**
@@ -26,6 +28,9 @@ public class CadastroProdutoBean implements Serializable {
 	@Inject
 	private CategoriasRepository repository;
 	
+	@Inject
+	private CadastroProdutoService service;
+	
 	private Produto produto;
 	
 	private List<Categoria> categoriasRaizes;
@@ -34,7 +39,7 @@ public class CadastroProdutoBean implements Serializable {
 	private Categoria categoriaPai;
 	
 	public CadastroProdutoBean() {
-		produto = new Produto();
+		this.limpar();
 	}
 	
 	public void inicializar() {
@@ -49,8 +54,17 @@ public class CadastroProdutoBean implements Serializable {
 		subcategorias = this.repository.subcategoriasDe(categoriaPai);
 	}
 	
+	private void limpar() {
+		this.produto = new Produto();
+		this.categoriaPai = null;
+		this.subcategorias = new ArrayList<>();
+	}
+	
 	public void salvar() {
-		System.out.println("Categoria pai selecionada: " + categoriaPai.getDescricao());
+		this.produto = this.service.salvar(this.produto);
+		
+		this.limpar();
+		FacesUtil.addInfoMessage("Produto salvo com sucesso!");
 	}
 
 	public Produto getProduto() {
