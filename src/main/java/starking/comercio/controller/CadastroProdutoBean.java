@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
@@ -36,7 +35,7 @@ public class CadastroProdutoBean implements Serializable {
 		produto = new Produto();
 	}
 	
-	public void inicializar(ComponentSystemEvent event) {
+	public void inicializar() {
 		System.out.println("Inicializando...");
 		
 		categoriasRaizes = this.repository.buscarCategoria();
