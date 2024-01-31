@@ -42,7 +42,7 @@ public class CadastroProdutoBean implements Serializable {
 	}
 	
 	public void salvar() {
-		System.out.println("Categoria Selecionada: "+ categoriaPai.getDescricao());
+		System.out.println("Categoria pai selecionada: " + categoriaPai.getDescricao());
 	}
 
 	public Produto getProduto() {

@@ -23,7 +23,7 @@
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
 					<p:commandButton value="Salvar" id="botaoSalvar"
-						action="#{cadastroProdutoBean.salvar}" />
+	    				action="#{cadastroProdutoBean.salvar}" />
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
 					<p:button value="Pesquisa" outcome="/produtos/PesquisaProduto" />
@@ -46,12 +46,11 @@
 	    			<f:selectItems value="#{cadastroProdutoBean.categoriasRaizes}" var="categoria"
 	    				itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
 	    		</p:selectOneMenu>
-
-				<p:outputLabel value="Subcategoria" for="subCategoria" />
-				<p:selectOneMenu id="subCategoria"
-					value="#{cadastroProdutoBean.produto.categoria}">
-					<f:selectItem itemLabel="Selecione a subcategoria" />
-				</p:selectOneMenu>
+	    		
+	    		<p:outputLabel value="Subcategoria" for="subCategoria"/>
+	    		<p:selectOneMenu id="subCategoria" value="#{cadastroProdutoBean.produto.categoria}">
+	    			<f:selectItem itemLabel="Selecione a subcategoria"/>
+	    		</p:selectOneMenu>
 
 				<p:outputLabel value="Valor unitário" for="valorUnitario"/>
 	    		<p:inputText id="valorUnitario" size="10" maxlength="10" styleClass="moeda"
