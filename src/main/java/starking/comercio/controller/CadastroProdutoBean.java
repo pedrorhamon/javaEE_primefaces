@@ -61,6 +61,7 @@ public class CadastroProdutoBean implements Serializable {
 		return categoriasRaizes;
 	}
 
+	@NotNull
 	public Categoria getCategoriaPai() {
 		return categoriaPai;
 	}
