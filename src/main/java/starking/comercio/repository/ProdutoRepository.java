@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 
 import starking.comercio.model.Produto;
@@ -20,13 +19,8 @@ public class ProdutoRepository implements Serializable{
 	private EntityManager manager;
 
 	public Produto salvarProduto(Produto produto) {
-		EntityTransaction trx = this.manager.getTransaction();
-		trx.begin();
+		return this.manager.merge(produto);
 		
-		produto = this.manager.merge(produto);
-		
-		trx.commit();
-		return produto;
 	}
 	
 	public Produto porSku(String sku) {

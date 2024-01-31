@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import starking.comercio.model.Produto;
 import starking.comercio.repository.ProdutoRepository;
+import starking.comercio.util.jpa.Transactional;
 
 /**
  * @author pedroRhamon
@@ -17,6 +18,7 @@ public class CadastroProdutoService implements Serializable {
 	@Inject
 	private ProdutoRepository repository;
 
+	@Transactional
 	public Produto salvar(Produto produto) {
 		Produto produtoExistente = this.repository.porSku(produto.getSku());
 
