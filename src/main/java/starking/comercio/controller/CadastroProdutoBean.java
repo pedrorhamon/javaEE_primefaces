@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import starking.comercio.model.Categoria;
 import starking.comercio.model.Produto;
 import starking.comercio.repository.CategoriasRepository;
+import starking.comercio.util.jsf.FacesUtil;
 
 /**
  * @author pedroRhamon
@@ -28,6 +29,7 @@ public class CadastroProdutoBean implements Serializable {
 	private Produto produto;
 	
 	private List<Categoria> categoriasRaizes;
+	private List<Categoria> subcategorias;
 	
 	private Categoria categoriaPai;
 	
@@ -36,9 +38,15 @@ public class CadastroProdutoBean implements Serializable {
 	}
 	
 	public void inicializar() {
-		System.out.println("Inicializando...");
+//		System.out.println("Inicializando...");
 		
-		categoriasRaizes = this.repository.buscarCategoria();
+		if(FacesUtil.isNotPostback()) {
+			categoriasRaizes = this.repository.buscarCategoria();
+		}
+	}
+	
+	public void carregarSubCategoria() {
+		subcategorias = this.repository.subcategoriasDe(categoriaPai);
 	}
 	
 	public void salvar() {
@@ -53,12 +61,15 @@ public class CadastroProdutoBean implements Serializable {
 		return categoriasRaizes;
 	}
 
-	@NotNull
 	public Categoria getCategoriaPai() {
 		return categoriaPai;
 	}
 
 	public void setCategoriaPai(Categoria categoriaPai) {
 		this.categoriaPai = categoriaPai;
+	}
+
+	public List<Categoria> getSubcategorias() {
+		return subcategorias;
 	}
 }
