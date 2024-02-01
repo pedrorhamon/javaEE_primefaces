@@ -1,12 +1,22 @@
 package starking.comercio.repository;
 
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+
 import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
+
 import starking.comercio.model.Produto;
+import starking.comercio.repository.filter.ProdutoFilter;
 
 /**
  * @author pedroRhamon
@@ -31,6 +41,21 @@ public class ProdutoRepository implements Serializable{
 		} catch (NoResultException e) {
 			return null;
 		}
+	}
+	
+	public List<Produto> filtrados(ProdutoFilter filter) {
+		Session session = this.manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Produto.class);
+		
+		if(isNotBlank(filter.getSku())) {
+			criteria.add(Restrictions.eqOrIsNull("sku", filter.getSku()));
+		}
+		
+		if (isNotBlank(filter.getNome())) {
+			criteria.add(Restrictions.ilike("nome", filter.getNome(), MatchMode.ANYWHERE));
+		}
+		
+		return criteria.addOrder(Order.asc("nome")).list();
 	}
 
 }
