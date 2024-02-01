@@ -1,28 +1,48 @@
 package starking.comercio.controller;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import starking.comercio.model.Produto;
+import starking.comercio.repository.ProdutoRepository;
+import starking.comercio.repository.filter.ProdutoFilter;
 
 /**
  * @author pedroRhamon
  */
 
-@ManagedBean
-@RequestScoped
-public class PesquisaProdutoBean {
+@Named
+@ViewScoped
+public class PesquisaProdutoBean implements Serializable{
 
-	private List<Integer> produtosFiltrados = new ArrayList<>();
+	private static final long serialVersionUID = 1L;
+	
+	private List<Produto> produtosFiltrados;
+	
+	@Inject
+	private ProdutoRepository repository;
+	
+	private ProdutoFilter filter;
 	
 	public PesquisaProdutoBean() {
-		for(int i = 0; i<50; i++) {
-			produtosFiltrados.add(i);
-		}
+		filter = new ProdutoFilter();
 	}
 	
-	public List<Integer> getProdutosFiltrados() {
+	public void pesquisar() {
+		produtosFiltrados = this.repository.filtrados(filter);
+	}
+	
+	public List<Produto> getProdutosFiltrados() {
 		return produtosFiltrados;
 	}
+
+	public ProdutoFilter getFilter() {
+		return filter;
+	}
+	
+	
 }
