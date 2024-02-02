@@ -28,9 +28,12 @@ public class ProdutoRepository implements Serializable{
 	@Inject
 	private EntityManager manager;
 
+	public Produto porId(Long id) {
+		return this.manager.find(Produto.class, id);
+	}
+	
 	public Produto salvarProduto(Produto produto) {
 		return this.manager.merge(produto);
-		
 	}
 	
 	public Produto porSku(String sku) {
