@@ -17,6 +17,8 @@ import org.hibernate.criterion.Restrictions;
 
 import starking.comercio.model.Produto;
 import starking.comercio.repository.filter.ProdutoFilter;
+import starking.comercio.service.NegocioException;
+import starking.comercio.util.jpa.Transactional;
 
 /**
  * @author pedroRhamon
@@ -59,6 +61,18 @@ public class ProdutoRepository implements Serializable{
 		}
 		
 		return criteria.addOrder(Order.asc("nome")).list();
+	}
+	
+	@Transactional
+	public void remover(Produto produto) {
+		try {
+			produto = this.porId(produto.getId());
+			this.manager.remove(produto);
+			this.manager.flush();
+			
+		} catch (Exception e) {
+			throw new NegocioException("Produto não pode ser excluido");
+		}
 	}
 
 }
