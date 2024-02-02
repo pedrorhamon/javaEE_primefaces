@@ -67,11 +67,7 @@ public class CadastroProdutoBean implements Serializable {
 	public void salvar() {
 		this.produto = this.service.salvar(this.produto);
 		
-		if(isEditando()) {
-			FacesUtil.addInfoMessage("Produto salvo com sucesso!");
-		} else {
-			FacesUtil.addInfoMessage("Produto editado com sucesso!");
-		}
+		FacesUtil.addInfoMessage("Produto salvo com sucesso!");
 		this.limpar();
 	}
 	
