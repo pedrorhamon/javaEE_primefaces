@@ -37,7 +37,7 @@ public class ProdutoConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		return value != null ? ((Produto) value).getId().toString() : "";
+		return (value != null) ? ((Produto) value).getId() == null ? null : ((Produto) value).getId().toString() : "";
 	}
 
 }
