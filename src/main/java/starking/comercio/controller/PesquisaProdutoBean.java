@@ -10,6 +10,7 @@ import javax.inject.Named;
 import starking.comercio.model.Produto;
 import starking.comercio.repository.ProdutoRepository;
 import starking.comercio.repository.filter.ProdutoFilter;
+import starking.comercio.util.jsf.FacesUtil;
 
 /**
  * @author pedroRhamon
@@ -28,8 +29,18 @@ public class PesquisaProdutoBean implements Serializable{
 	
 	private ProdutoFilter filter;
 	
+	private Produto produtoSelecionado;
+	
 	public PesquisaProdutoBean() {
 		filter = new ProdutoFilter();
+	}
+	
+	public void excluir() {
+		this.repository.remover(produtoSelecionado);
+		produtosFiltrados.remove(produtoSelecionado);
+		
+		FacesUtil.addInfoMessage("Produto " + produtoSelecionado.getSku() 
+				+ " excluído com sucesso.");
 	}
 	
 	public void pesquisar() {
@@ -43,6 +54,12 @@ public class PesquisaProdutoBean implements Serializable{
 	public ProdutoFilter getFilter() {
 		return filter;
 	}
-	
-	
+
+	public Produto getProdutoSelecionado() {
+		return produtoSelecionado;
+	}
+
+	public void setProdutoSelecionado(Produto produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
+	}
 }
