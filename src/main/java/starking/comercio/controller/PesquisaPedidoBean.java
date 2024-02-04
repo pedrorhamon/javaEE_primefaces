@@ -3,9 +3,9 @@ package starking.comercio.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import starking.comercio.model.Pedido;
 import starking.comercio.model.enums.StatusPedido;
@@ -16,8 +16,8 @@ import starking.comercio.repository.filter.PedidoFilter;
  * @author pedroRhamon
  */
 
-@ManagedBean
-@RequestScoped
+@Named
+@ViewScoped
 public class PesquisaPedidoBean {
 
 	@Inject
@@ -35,7 +35,7 @@ public class PesquisaPedidoBean {
 		pedidosFiltrados = this.repository.filtrados(filtro);
 	}
 	
-	public StatusPedido[] getStatuses() {
+	public StatusPedido[] getStatus() {
 		return StatusPedido.values();
 	}
 	

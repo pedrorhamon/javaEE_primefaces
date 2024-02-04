@@ -61,9 +61,9 @@ public class PedidoRepository implements Serializable {
 			criteria.add(Restrictions.ilike("v.nome", filtro.getNomeVendedor(), MatchMode.ANYWHERE));
 		}
 		
-		if (filtro.getStatuses() != null && filtro.getStatuses().length > 0) {
+		if (filtro.getStatus() != null && filtro.getStatus().length > 0) {
 			// adicionamos uma restrição "in", passando um array de constantes da enum StatusPedido
-			criteria.add(Restrictions.in("status", filtro.getStatuses()));
+			criteria.add(Restrictions.in("status", filtro.getStatus()));
 		}
 		
 		return criteria.addOrder(Order.asc("id")).list();
