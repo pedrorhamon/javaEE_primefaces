@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -98,4 +99,14 @@ public class Pedido implements Serializable {
 	
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<ItemPedido> itens = new ArrayList<>();
+
+	@Transient
+	public boolean isNovo() {
+		return getId() == null;
+	}
+	
+	@Transient
+	public boolean isExistente() {
+		return !isNovo();
+	}
 }
