@@ -1,5 +1,6 @@
 package starking.comercio.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,9 @@ import starking.comercio.repository.filter.PedidoFilter;
 
 @Named
 @ViewScoped
-public class PesquisaPedidoBean {
+public class PesquisaPedidoBean implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private PedidoRepository repository;
