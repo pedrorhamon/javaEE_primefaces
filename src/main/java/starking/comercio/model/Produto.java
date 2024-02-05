@@ -22,6 +22,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import starking.comercio.service.NegocioException;
 import starking.comercio.validation.SKU;
 
 /**
@@ -66,5 +67,16 @@ public class Produto implements Serializable {
 	
 	public void setSku(String sku) {
 		this.sku = sku == null ? null : sku.toUpperCase();
+	}
+
+	public void baixarEstoque(Integer quantidade) {
+		int novaQuantidade = this.getQuantidadeEstoque() - quantidade;
+		
+		if (novaQuantidade < 0) {
+			throw new NegocioException("Não há disponibilidade no estoque de "
+					+ quantidade + " itens do produto " + this.getSku() + ".");
+		}
+		
+		this.setQuantidadeEstoque(novaQuantidade);
 	}
 }

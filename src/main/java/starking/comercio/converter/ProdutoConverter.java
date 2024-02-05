@@ -5,9 +5,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import starking.comercio.model.Categoria;
 import starking.comercio.model.Produto;
-import starking.comercio.repository.CategoriasRepository;
 import starking.comercio.repository.ProdutoRepository;
 import starking.comercio.util.cdi.CDIServiceLocator;
 
@@ -37,7 +35,12 @@ public class ProdutoConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		return (value != null) ? ((Produto) value).getId() == null ? null : ((Produto) value).getId().toString() : "";
+		if (value != null) {
+			Produto produto = (Produto) value;
+			return produto.getId() == null ? null : produto.getId().toString();
+		}
+		
+		return "";
 	}
 
 }
