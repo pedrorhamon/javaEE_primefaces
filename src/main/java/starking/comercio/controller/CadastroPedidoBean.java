@@ -59,6 +59,10 @@ public class CadastroPedidoBean implements Serializable {
 		FacesUtil.addInfoMessage("Pedido salvo com sucesso!");
 	}
 	
+	public void recalcularPedido() {
+		this.pedido.recalcularValorTotal();
+	}
+	
 	public FormaPagamento[] getFormasPagamento() {
 		return FormaPagamento.values();
 	}

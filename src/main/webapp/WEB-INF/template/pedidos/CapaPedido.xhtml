@@ -39,6 +39,8 @@
         <p:inputText id="valorFrete" size="10" maxlength="10" styleClass="moeda" 
         	value="#{cadastroPedidoBean.pedido.valorFrete}">
         	<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+        	
+        	<p:ajax event="change" process="@this"  update="totalPedido" listener="#{cadastroPedidoBean.recalcularPedido}"/>
         </p:inputText>
         
         <p:outputLabel value="Subtotal" style="font-weight: bold"/>
