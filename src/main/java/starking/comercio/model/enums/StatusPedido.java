@@ -1,5 +1,6 @@
 package starking.comercio.model.enums;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -7,6 +8,7 @@ import lombok.Getter;
  */
 
 @Getter
+@AllArgsConstructor
 public enum StatusPedido {
 
 	ORCAMENTO("Orçamento"), 
@@ -14,8 +16,4 @@ public enum StatusPedido {
 	CANCELADO("Cancelado");
 
 	private String descricao;
-	
-	StatusPedido(String descricao) {
-		this.descricao = descricao;
-	}
 }

@@ -15,7 +15,7 @@ public class CadastroPedidoService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private PedidoRepository pedidos;
+	private PedidoRepository repository;
 
 	@Transactional
 	public Pedido salvar(Pedido pedido) {
@@ -23,8 +23,18 @@ public class CadastroPedidoService implements Serializable {
 			pedido.setDataCriacao(new Date());
 			pedido.setStatus(StatusPedido.ORCAMENTO);
 		}
-
-		pedido = this.pedidos.guardar(pedido);
+		
+		pedido.recalcularValorTotal();
+		
+		if (pedido.getItens().isEmpty()) {
+			throw new NegocioException("O pedido deve possuir pelo menos um item.");
+		}
+		
+		if (pedido.isValorTotalNegativo()) {
+			throw new NegocioException("Valor total do pedido não pode ser negativo.");
+		}
+		
+		pedido = this.repository.guardar(pedido);
 		return pedido;
 	}
 

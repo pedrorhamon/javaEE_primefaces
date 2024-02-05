@@ -1,11 +1,13 @@
 package starking.comercio.model.enums;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
  * @author pedroRhamon
  */
 @Getter
+@AllArgsConstructor
 public enum FormaPagamento {
 
 	DINHEIRO("Dinheiro"), 
@@ -16,9 +18,4 @@ public enum FormaPagamento {
 	DEPOSITO_BANCARIO("Depósito bancário");
 	
 	private String descricao;
-	
-	FormaPagamento(String descricao) {
-		this.descricao = descricao;
-	}
-	
 }

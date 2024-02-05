@@ -65,20 +65,20 @@ public class Pedido implements Serializable {
 
 	@NotNull
 	@Column(name = "valor_frete", nullable = false, precision = 10, scale = 2)
-	private BigDecimal valorFrete;
+	private BigDecimal valorFrete = BigDecimal.ZERO;
 
 	@NotNull
 	@Column(name = "valor_desconto", nullable = false, precision = 10, scale = 2)
-	private BigDecimal valorDesconto;
+	private BigDecimal valorDesconto = BigDecimal.ZERO;
 
 	@NotNull
 	@Column(name = "valor_total", nullable = false, precision = 10, scale = 2)
-	private BigDecimal valorTotal;
+	private BigDecimal valorTotal = BigDecimal.ZERO;
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 20)
-	private StatusPedido status;
+	private StatusPedido status = StatusPedido.ORCAMENTO;
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
@@ -128,5 +128,35 @@ public class Pedido implements Serializable {
 		}
 
 		this.setValorTotal(total);
+	}
+
+	public void adicionarItemVazio() {
+		if (this.isOrcamento()) {
+			Produto produto = new Produto();
+			
+			ItemPedido item = new ItemPedido();
+			item.setProduto(produto);
+			item.setPedido(this);
+			
+			this.getItens().add(0, item);
+		}
+	}
+
+	@Transient
+	public boolean isOrcamento() {
+		return StatusPedido.ORCAMENTO.equals(this.getStatus());
+	}
+	
+	public void removerItemVazio() {
+		ItemPedido primeiroItem = this.getItens().get(0);
+		
+		if (primeiroItem != null && primeiroItem.getProduto().getId() == null) {
+			this.getItens().remove(0);
+		}
+	}
+
+	@Transient
+	public boolean isValorTotalNegativo() {
+		return this.getValorTotal().compareTo(BigDecimal.ZERO) < 0;
 	}
 }

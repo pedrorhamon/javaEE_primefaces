@@ -8,6 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -38,6 +39,8 @@ public class ProdutoRepository implements Serializable{
 		return this.manager.merge(produto);
 	}
 	
+	
+	
 	public Produto porSku(String sku) {
 		try {
 			return manager.createQuery("from Produto where upper(sku) = :sku", Produto.class)
@@ -66,13 +69,17 @@ public class ProdutoRepository implements Serializable{
 	@Transactional
 	public void remover(Produto produto) {
 		try {
-			produto = this.porId(produto.getId());
-			this.manager.remove(produto);
-			this.manager.flush();
-			
-		} catch (Exception e) {
-			throw new NegocioException("Produto não pode ser excluido");
+			produto = porId(produto.getId());
+			manager.remove(produto);
+			manager.flush();
+		} catch (PersistenceException e) {
+			throw new NegocioException("Produto não pode ser excluído.");
 		}
+	}
+	
+	public List<Produto> porNome(String nome) {
+		return this.manager.createQuery("from Produto where upper(nome) like :nome", Produto.class)
+				.setParameter("nome", nome.toUpperCase() + "%").getResultList();
 	}
 
 }
