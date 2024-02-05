@@ -38,6 +38,7 @@
 					listener="#{cadastroPedidoBean.atualizarQuantidade(item, linha)}"/>
 			</p:inputText>
 		</p:column>
+		
 		<p:column headerText="Estoque" style="text-align: center; width: 100px">
 			<h:outputText value="#{item.produto.quantidadeEstoque}" 
 				style="#{item.estoqueInsuficiente ? 'color: red' : ''}"/>
@@ -48,6 +49,12 @@
 				
 			<p:tooltip for="semEstoque" value="Estoque insuficiente"
 				rendered="#{item.estoqueInsuficiente}" />
+		</p:column>
+		
+		<p:column headerText="Valor total" style="text-align: right; width: 100px">
+			<h:outputText value="#{item.valorTotal}">
+				<f:convertNumber type="currency"/>
+			</h:outputText>
 		</p:column>
 		
 		<p:columnGroup type="footer">
