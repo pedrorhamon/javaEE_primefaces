@@ -8,6 +8,7 @@ import starking.comercio.model.Pedido;
 import starking.comercio.model.enums.StatusPedido;
 import starking.comercio.repository.PedidoRepository;
 
+
 public class EmissaoPedidoService implements Serializable {
 
 	private static final long serialVersionUID = 1L;

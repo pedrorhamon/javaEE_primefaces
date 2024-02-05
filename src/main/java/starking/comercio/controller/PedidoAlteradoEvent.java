@@ -1,10 +1,10 @@
 package starking.comercio.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import starking.comercio.model.Pedido;
 
-@Data
+@Getter
 @AllArgsConstructor
 public class PedidoAlteradoEvent {
 

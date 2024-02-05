@@ -3,6 +3,7 @@ package starking.comercio.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.inject.Produces;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,6 +22,7 @@ import starking.comercio.repository.ProdutoRepository;
 import starking.comercio.repository.UsuarioRepository;
 import starking.comercio.service.CadastroPedidoService;
 import starking.comercio.util.jsf.FacesUtil;
+import starking.comercio.validation.PedidoEdicao;
 import starking.comercio.validation.SKU;
 
 /**
@@ -44,7 +46,10 @@ public class CadastroPedidoBean implements Serializable {
 	@Inject
 	private ProdutoRepository produtoRepository;
 
+	@Produces
+	@PedidoEdicao
 	private Pedido pedido;
+	
 	private List<Usuario> vendedores;
 	
 	private Produto produtoLinhaEditavel;

@@ -40,7 +40,7 @@ import starking.comercio.model.enums.StatusPedido;
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "item_Pedido")
+@Table(name = "pedido")
 public class Pedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
