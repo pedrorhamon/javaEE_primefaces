@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import lombok.Getter;
 import starking.comercio.model.Pedido;
 import starking.comercio.model.enums.StatusPedido;
 import starking.comercio.repository.PedidoRepository;
@@ -19,6 +20,7 @@ import starking.comercio.repository.filter.PedidoFilter;
 
 @Named
 @ViewScoped
+@Getter
 public class PesquisaPedidoBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -40,13 +42,5 @@ public class PesquisaPedidoBean implements Serializable{
 	
 	public StatusPedido[] getStatus() {
 		return StatusPedido.values();
-	}
-	
-	public List<Pedido> getPedidosFiltrados() {
-		return pedidosFiltrados;
-	}
-
-	public PedidoFilter getFiltro() {
-		return filtro;
 	}
 }
