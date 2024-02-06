@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import starking.comercio.model.Pedido;
 import starking.comercio.model.enums.StatusPedido;
 import starking.comercio.repository.PedidoRepository;
+import starking.comercio.util.jpa.Transactional;
 
 
 public class EmissaoPedidoService implements Serializable {
@@ -22,6 +23,7 @@ public class EmissaoPedidoService implements Serializable {
 	@Inject
 	private PedidoRepository pedidoRepository;
 
+	@Transactional
 	public Pedido emitir(Pedido pedido) {
 		pedido = this.cadastroPedidoService.salvar(pedido);
 
