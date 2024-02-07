@@ -18,7 +18,7 @@ import starking.comercio.util.cdi.CDIServiceLocator;
 /**
  * @author pedroRhamon
  */
-public class AppDetailsService implements UserDetailsService{
+public class AppUserDetailsService implements UserDetailsService{
 
 	
 	@Override
@@ -34,13 +34,13 @@ public class AppDetailsService implements UserDetailsService{
 	}
 
 	private Collection<? extends GrantedAuthority> getGrupos(Usuario usuario) {
-		List<SimpleGrantedAuthority> grupos = new ArrayList<>();
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		
 		for(Grupo grupo: usuario.getGrupos()) {
-			grupos.add(new SimpleGrantedAuthority(grupo.getNome().toUpperCase()));
+			authorities.add(new SimpleGrantedAuthority(grupo.getNome().toUpperCase()));
 		}
 		
-		return grupos;
+		return authorities;
 	}
 
 }
