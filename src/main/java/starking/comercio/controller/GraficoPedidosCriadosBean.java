@@ -1,12 +1,15 @@
 package starking.comercio.controller;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
 import lombok.Getter;
+import starking.comercio.repository.PedidoRepository;
+import starking.comercio.util.security.UsuarioSistema;
 
 /**
  * @author pedroRhamon
@@ -18,6 +21,12 @@ import lombok.Getter;
 public class GraficoPedidosCriadosBean {
 	
 	private CartesianChartModel model;
+	
+	@Inject
+	private PedidoRepository pedidoRepository;
+	
+	@Inject
+	private UsuarioSistema usuarioLogado;
 	
 	public void preRender() {
 		this.model = new CartesianChartModel();
