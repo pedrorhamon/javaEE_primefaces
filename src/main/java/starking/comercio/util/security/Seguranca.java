@@ -9,6 +9,8 @@ import javax.inject.Named;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
+import starking.comercio.validation.UsuarioLogado;
+
 /**
  * @author pedroRhamon
  */
@@ -33,6 +35,7 @@ public class Seguranca {
 	}
 
 	@Produces
+	@UsuarioLogado
 	public UsuarioSistema getUsuarioLogado() {
 		UsuarioSistema usuario = null;
 		
