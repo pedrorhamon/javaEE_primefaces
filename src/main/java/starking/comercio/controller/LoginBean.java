@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lombok.Getter;
+import lombok.Setter;
 import starking.comercio.util.jsf.FacesUtil;
 
 @Named
 @SessionScoped
 @Getter
+@Setter
 public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
