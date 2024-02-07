@@ -47,6 +47,7 @@ public class Usuario implements Serializable {
 	
 	@Column(nullable = false, length = 20)
 	private String senha;
+	
 	private Boolean ativo = true;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
