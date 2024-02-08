@@ -5,9 +5,6 @@ import java.io.Serializable;
 import lombok.Data;
 import starking.comercio.validation.SKU;
 
-/**
- * @author pedroRhamon
- */
 @Data
 public class ProdutoFilter implements Serializable {
 
@@ -16,7 +13,7 @@ public class ProdutoFilter implements Serializable {
 	@SKU
 	private String sku;
 	private String nome;
-
+	
 	public void setSku(String sku) {
 		this.sku = sku == null ? null : sku.toUpperCase();
 	}
