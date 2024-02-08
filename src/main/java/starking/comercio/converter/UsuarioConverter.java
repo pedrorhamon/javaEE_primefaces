@@ -33,9 +33,10 @@ public class UsuarioConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if (value != null) {
-			return ((Usuario) value).getId().toString();
+			Usuario usuario = (Usuario) value;
+			return usuario.getId() == null ? null : usuario.getId().toString();
 		}
+
 		return "";
 	}
-
 }

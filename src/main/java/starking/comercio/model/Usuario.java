@@ -16,9 +16,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author pedroRhamon
@@ -28,8 +29,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "usuario")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;

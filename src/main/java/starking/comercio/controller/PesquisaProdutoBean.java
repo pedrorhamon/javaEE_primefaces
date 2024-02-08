@@ -12,31 +12,26 @@ import starking.comercio.repository.ProdutoRepository;
 import starking.comercio.repository.filter.ProdutoFilter;
 import starking.comercio.util.jsf.FacesUtil;
 
-/**
- * @author pedroRhamon
- */
-
 @Named
 @ViewScoped
-public class PesquisaProdutoBean implements Serializable{
+public class PesquisaProdutoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private List<Produto> produtosFiltrados;
-	
 	@Inject
-	private ProdutoRepository repository;
+	private ProdutoRepository produtos;
 	
-	private ProdutoFilter filter;
+	private ProdutoFilter filtro;
+	private List<Produto> produtosFiltrados;
 	
 	private Produto produtoSelecionado;
 	
 	public PesquisaProdutoBean() {
-		filter = new ProdutoFilter();
+		filtro = new ProdutoFilter();
 	}
 	
 	public void excluir() {
-		this.repository.remover(produtoSelecionado);
+		produtos.remover(produtoSelecionado);
 		produtosFiltrados.remove(produtoSelecionado);
 		
 		FacesUtil.addInfoMessage("Produto " + produtoSelecionado.getSku() 
@@ -44,15 +39,15 @@ public class PesquisaProdutoBean implements Serializable{
 	}
 	
 	public void pesquisar() {
-		produtosFiltrados = this.repository.filtrados(filter);
+		produtosFiltrados = produtos.filtrados(filtro);
 	}
 	
 	public List<Produto> getProdutosFiltrados() {
 		return produtosFiltrados;
 	}
 
-	public ProdutoFilter getFilter() {
-		return filter;
+	public ProdutoFilter getFiltro() {
+		return filtro;
 	}
 
 	public Produto getProdutoSelecionado() {
@@ -62,4 +57,5 @@ public class PesquisaProdutoBean implements Serializable{
 	public void setProdutoSelecionado(Produto produtoSelecionado) {
 		this.produtoSelecionado = produtoSelecionado;
 	}
+	
 }

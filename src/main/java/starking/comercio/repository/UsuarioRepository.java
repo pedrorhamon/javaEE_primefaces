@@ -19,6 +19,7 @@ import org.hibernate.criterion.Restrictions;
 import starking.comercio.model.Usuario;
 import starking.comercio.repository.filter.UsuarioFilter;
 import starking.comercio.service.NegocioException;
+import starking.comercio.util.jpa.Transactional;
 
 public class UsuarioRepository implements Serializable {
 
@@ -69,6 +70,7 @@ public class UsuarioRepository implements Serializable {
 	    return criteria.addOrder(Order.asc("nome")).list();
 	}
 
+	@Transactional
 	public void remover(Usuario usuario) {
 		try {
 			usuario = porId(usuario.getId());
@@ -78,6 +80,5 @@ public class UsuarioRepository implements Serializable {
 			throw new NegocioException("Usuário não pode ser excluído.");
 		}
 	}
-
 
 }
