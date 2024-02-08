@@ -8,6 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -15,10 +16,9 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import starking.comercio.model.Pedido;
-import starking.comercio.model.Produto;
 import starking.comercio.model.Usuario;
 import starking.comercio.repository.filter.UsuarioFilter;
+import starking.comercio.service.NegocioException;
 
 public class UsuarioRepository implements Serializable {
 
@@ -67,6 +67,16 @@ public class UsuarioRepository implements Serializable {
 	    }
 
 	    return criteria.addOrder(Order.asc("nome")).list();
+	}
+
+	public void remover(Usuario usuario) {
+		try {
+			usuario = porId(usuario.getId());
+			manager.remove(usuario);
+			manager.flush();
+		} catch (PersistenceException e) {
+			throw new NegocioException("Usuário não pode ser excluído.");
+		}
 	}
 
 

@@ -41,9 +41,10 @@ public class PesquisaUsuarioBean implements Serializable{
 	}
 	
 	public void excluir() {
+		this.repository.remover(usuarioSelecionado);
 		usuarioFiltrados.remove(usuarioSelecionado);
 		
-		FacesUtil.addInfoMessage("Produto " + usuarioSelecionado.getNome() 
+		FacesUtil.addInfoMessage("Usuário " + usuarioSelecionado.getNome() 
 				+ " excluído com sucesso.");
 	}
 }
