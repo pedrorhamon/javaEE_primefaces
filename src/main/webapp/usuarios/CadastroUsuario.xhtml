@@ -1,0 +1,64 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="titulo">#{cadastroUsuarioBean.editando ? 'Edição de Usuário' : 'Novo Usuário'}</ui:define>
+
+	<ui:define name="corpo">
+
+		<f:metadata>
+			<o:viewParam name="usuario" value="#{cadastroUsuarioBean.usuario}" />
+			<f:event listener="#{cadastroUsuarioBean.inicializar}"
+				type="preRenderView" />
+		</f:metadata>
+
+		<h:form>
+			<h1>#{cadastroUsuarioBean.editando ? 'Edição de Usuário' : 'Novo
+				Usuário'}}</h1>
+
+			<p:messages autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/usuarios/CadastroUsuario" />
+					<p:commandButton
+						value="#{cadastroUsuarioBean.editando ? 'Editar' : 'Salvar'}"
+						id="botaoSalvar" action="#{cadastroUsuarioBean.salvar}"
+						update="@form" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="/usuarios/PesquisaUsuario" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="60" maxlength="80"
+					value="#{cadastroUsuarioBean.usuario.nome}" />
+
+				<p:outputLabel value="Email" for="email" />
+				<p:inputText id="email" size="60" maxlength="80"
+					value="#{cadastroUsuarioBean.usuario.email}" />
+
+				<p:outputLabel value="Senha" for="senha" />
+				<p:inputMask id="senha" size="60" maxlength="80"
+					value="#{cadastroUsuarioBean.usuario.senha}" />
+
+
+				<p:outputLabel value="Grupos" for="grupo" />
+				<p:selectOneMenu id="grupos"
+					value="#{cadastroUsuarioBean.grupo}">
+					<f:selectItem itemLabel="Selecione um grupo" />
+					<f:selectItems value="#{cadastroUsuarioBean.grupoRaizes}"
+						var="categoria" itemValue="#{grupo}"
+						itemLabel="#{grupo.descricao}" />
+				</p:selectOneMenu>
+
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
