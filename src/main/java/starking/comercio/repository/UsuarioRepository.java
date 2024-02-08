@@ -16,6 +16,11 @@ public class UsuarioRepository implements Serializable {
 	@Inject
 	private EntityManager manager;
 
+	
+	public Usuario guardar(Usuario usuario) {
+		return this.manager.merge(usuario);
+	}
+	
 	public Usuario porId(Long id) {
 		return this.manager.find(Usuario.class, id);
 	}
